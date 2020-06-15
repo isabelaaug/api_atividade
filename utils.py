@@ -1,7 +1,7 @@
-from models import Pessoas
+from models import Pessoas, Usuarios
 
 
-# GET na tabela pessoa
+# Consulta dados na tabela pessoa
 def consulta_pessoa():
     pessoa = Pessoas.query.all()
     print(pessoa)
@@ -12,14 +12,14 @@ def consulta_pessoa():
     # print(pessoa.idade)
 
 
-# POST na tabela pessoa
+# Insere dados na tabela pessoa
 def insere_pessoas():
     pessoa = Pessoas(nome='Luiz', idade=22)
     print(pessoa)
     pessoa.save()
 
 
-# PUT na tabela pessoa
+# Atualiza dados na tabela pessoa
 def altera_pessoa():
     # pessoa = Pessoas.query.filter_by(nome='Isabela').first()
     # pessoa.idade = 31
@@ -28,14 +28,28 @@ def altera_pessoa():
     pessoa.save()
 
 
-# DELETE na tabela pessoa
+# Exclui dados na tabela pessoa
 def exclui_pessoa():
     pessoa = Pessoas.query.filter_by(nome='Marco Antonio').first()
     pessoa.delete()
 
 
+def insere_usuario(login, senha):
+    usuario = Usuarios(login=login, senha=senha)
+    usuario.save()
+
+
+def consulta_usuarios():
+    usuarios = Usuarios.query.all()
+    print(usuarios)
+
+
 if __name__ == '__main__':
     # insere_pessoas()
     # altera_pessoa()
-    exclui_pessoa()
-    consulta_pessoa()
+    # exclui_pessoa()
+    # consulta_pessoa()
+    # insere_usuario('jorge', '1234')
+    # insere_usuario('ana', '1234')
+    # insere_usuario('arthur', '1234')
+    consulta_usuarios()

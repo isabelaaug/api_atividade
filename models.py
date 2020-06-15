@@ -13,11 +13,11 @@ Base.query = db_session.query_property()
 class Pessoas(Base):
     __tablename__ = 'pessoas'
     id = Column(Integer, primary_key=True)
-    nome = Column(String(40), index=True)
+    nome = Column(String(40), index=True)  # cria um index para a coluna deixa a consulta mais rápida
     idade = Column(Integer)
 
     def __repr__(self):
-        return '<Pessoa {}>'.format(self.nome)
+        return '<Pessoa {}>'.format(self.nome) 
 
     def save(self):
         db_session.add(self)
@@ -37,6 +37,24 @@ class Atividades(Base):
 
     def __repr__(self):
         return '<Atividades {}>'.format(self.nome)
+
+    def save(self):
+        db_session.add(self)
+        db_session.commit()
+
+    def delete(self):
+        db_session.delete(self)
+        db_session.commit()
+
+
+class Usuarios(Base):
+    __tablename__ = 'usuarios'
+    id = Column(Integer, primary_key=True)
+    login = Column(String(20), unique=True)  # cria um index para a coluna deixa a consulta mais rápida
+    senha = Column(String(20))
+
+    def __repr__(self):
+        return '<Usuário {}>'.format(self.login)
 
     def save(self):
         db_session.add(self)
